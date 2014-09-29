@@ -5,11 +5,11 @@ pre: Takes 2 char* and 1 unsigned int
 post: returns a pointer to a string which is the concatenation of char 1 and the first n chars of char 2
 */
 char* my_strnconcat(char* s1, char* s2, unsigned int n){
-  int l1 = NULL;
-  int l2 = NULL;
+  int l1;
+  int l2;
   char* s3 = NULL;
-  int i = NULL;
-  int j = NULL;
+  int i;
+  int j;
   if(s1 && s2){
     l1 = my_strlen(s1);
     l2 = my_strlen(s2);
