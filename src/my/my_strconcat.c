@@ -11,10 +11,10 @@ char* my_strconcat(char* s1, char* s2){
     char* s3 = xmalloc((l1 + l2) * sizeof(char) + 1);
     int i;
     int j;
-    for(i = 0; s1[i]; s3[i] = s1[i++])
-      ;
-    for(j = 0; s2[j]; s3[i++] = s2[j++])
-      ;
+    for(i = 0; s1[i]; i++)
+     s3[i] = s1[i];
+    for(j = 0; s2[j]; i++, j++)
+      s3[i] = s2[j];
     s3[i] = '\0';
     return s3;
   } else

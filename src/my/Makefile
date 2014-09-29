@@ -4,7 +4,7 @@ OBJ = $(SRC:.c=.o)
 RM = rm -f
 INCL_PATH = ../../include
 LIB_PATH = ../../lib
-CFLAGS += -I$(INCL_PATH)
+CFLAGS += -I$(INCL_PATH) -pedantic-errors -Wall
 
 all:	$(OBJ)
 	ar -rc $(LIB_PATH)/$(NAME) $(OBJ)

@@ -8,7 +8,7 @@ post: return the int corrosponding to the last occurence of s in str
 int my_strrpos(char* str, char s){
   int i = -1;
   int j = 0;
-  if(str != NULL && str != "")
+  if(str)
     for(; *str != '\0'; str++, j++)
       if(*str == s)
 	i = j;
