@@ -11,7 +11,7 @@ all:	$(OBJ)
 	ar -rc $(LIB_PATH)/$(NAME) $(OBJ)
 	ranlib $(LIB_PATH)/$(NAME)
 
-debug:	all
+debug:	fclean all
 
 clean:
 	-$(RM) *~

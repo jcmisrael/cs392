@@ -4,7 +4,7 @@
 
 #include "my.h"
 
-int main(int argc, char* args[]){
+int main(int argc, char** argv){
 #ifdef T2
   /* test my_strdup */
   my_str("Testing my_strdup\n");
@@ -145,6 +145,12 @@ int main(int argc, char* args[]){
   NL
     my_str(my_strrfind(s, 'x'));
   NL
+
+    /* test my_vect2str */
+    my_str("Testing my_vect2str.\n");
+  my_str(my_vect2str(&(argv[1])));
+  NL
+    my_str((my_vect2str(NULL)) ? "BAD: !NULL\n" : "GOOD: NULL\n");
 
 #endif
   return 0;

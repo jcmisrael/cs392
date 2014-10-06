@@ -30,6 +30,6 @@ char* my_strncpy(char*, char*, unsigned int);
 char* my_strfind(char*, char);
 char* my_strrfind(char*, char);
 void* xmalloc(int n);
-
+char* my_vect2str(char**);
 
 #endif
