@@ -5,6 +5,7 @@
 #include "my.h"
 
 int main(int argc, char** argv){
+  int i;
 #ifdef T2
   /* test my_strdup */
   my_str("Testing my_strdup\n");
@@ -95,7 +96,7 @@ int main(int argc, char** argv){
     my_str("Testing my_strcat.\n");
   char* s = xmalloc(12 * sizeof(char) + 1);
   char* sc = "hello";
-  int i = 0;
+  i = 0;
   for(; sc[i] != '\0'; s[i] = sc[i++]);
   s[i] = '\0';
   my_str(my_strcat(s, NULL)); // Prints: hello
@@ -151,7 +152,27 @@ int main(int argc, char** argv){
   my_str(my_vect2str(&(argv[1])));
   NL
     my_str((my_vect2str(NULL)) ? "BAD: !NULL\n" : "GOOD: NULL\n");
-
+  NL
+  
+    /* test my_str2vect */
+    my_str("Testing my_str2vect.\n");
+    char** v1 = my_str2vect("Testing my_str2vect");
+  for(i = 0; v1[i]; ++i){
+    my_str(v1[i]);
+    free(v1[i]);
+    my_char(' ');
+  }
+  my_char('\n');
+  free(v1);
+  v1 = my_str2vect("test    number\t\t\t\t    2 \t with \t  \t tabs ");
+  for(i = 0; v1[i]; ++i){
+    my_str(v1[i]);
+    free(v1[i]);
+    my_char(' ');
+  }
+  my_char('\n');
+  free(v1);
+  
 #endif
   return 0;
 }

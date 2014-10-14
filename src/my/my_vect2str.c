@@ -9,7 +9,6 @@ char* my_vect2str(char** stringArray){
   char* rStringInc = NULL;
   int length;
   int i;
-  int sLength;
   if(stringArray){
     for(length = 0, i = 0; stringArray[i]; ++i)
       length += my_strlen(stringArray[i]) + 1;

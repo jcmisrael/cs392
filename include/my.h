@@ -31,5 +31,6 @@ char* my_strfind(char*, char);
 char* my_strrfind(char*, char);
 void* xmalloc(int n);
 char* my_vect2str(char**);
+char** my_str2vect(char*);
 
 #endif
