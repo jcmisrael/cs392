@@ -4,15 +4,11 @@
 
 #include "my.h"
 #include <sys/wait.h>
+#include <stdio.h>
 
-void writePrompt(){
-  char* hostname = NULL;
-  char* cwd = NULL;
-  cwd = (char*) xmalloc(PATH_MAX * sizeof(char) + 1);
-  hostname = (char*) xmalloc(MAX_HOST_NAME * sizeof(char) + 1);
-  gethostname(hostname, MAX_HOST_NAME); 
+void writePrompt(char* hostname, char* cwd){
   getcwd(cwd, PATH_MAX);
-  
+  gethostname(hostname, PATH_MAX);
   my_str("\033[32;1m");
   my_str(getlogin());
   my_char('@');
@@ -30,15 +26,21 @@ int main(int argc, char** argv){
   char* input = NULL;
   int strLen;
   char** inputVect = NULL;
+  char* hostname = NULL;
+  char* cwd = NULL;
+  cwd = (char*) xmalloc(PATH_MAX * sizeof(char) + 1);
+  hostname = (char*) xmalloc(MAX_HOST_NAME * sizeof(char) + 1);
   input = (char*) xmalloc(MAX_INPUT_BUF * sizeof(char));
   while(1){
-    writePrompt();
+    writePrompt(hostname, cwd);
     strLen = read(0, input,MAX_INPUT_BUF * sizeof(char)) - 1;
     input[strLen] = '\0';
     if(strLen >= 2){
       inputVect = my_str2vect(input);
       if(!my_strcmp(inputVect[0], "exit")){
 	my_str("Exiting minishell. Goodbye!\n");
+	free(cwd);
+	free(hostname);
 	exit(1);
       } else if(!my_strcmp(inputVect[0], "cd"))
 	chdir(inputVect[1]);
@@ -49,10 +51,11 @@ int main(int argc, char** argv){
 	} else if (pid > 0){
 	  while(wait(NULL) != pid)
 	    ;
-	  /*my_freevect(inputVect); */
+	  my_freevect(inputVect);
 	} else {
 	  if(execvp(inputVect[0], inputVect) < 0){
 	    my_str("ERROR: execvp failed.\n");
+	    /*perror("ERROR: execvp failed");*/
 	    exit(1);
 	  }
 	}
