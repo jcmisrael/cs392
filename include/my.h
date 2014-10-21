@@ -33,5 +33,6 @@ void* xmalloc(int n);
 char* my_vect2str(char**);
 char** my_str2vect(char*);
 void my_freevect(char**);
+int my_atoi(char*);
 
 #endif

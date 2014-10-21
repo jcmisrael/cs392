@@ -6,6 +6,7 @@
 
 int main(int argc, char** argv){
   int i;
+  int j;
 #ifdef T2
   /* test my_strdup */
   my_str("Testing my_strdup\n");
@@ -173,6 +174,30 @@ int main(int argc, char** argv){
   my_char('\n');
   free(v1);
   
+  /* Testing my_atoi */
+  my_str("Testing my_atoi.\n");
+  j = my_atoi("test");
+  my_str("Garbage Test: ");
+  my_int(j);			/* Should print garbage */
+  my_char('\n');
+  j = my_atoi(NULL);
+  my_str("Null Garbage Test: ");
+  my_int(j);			/* Should print garbage */
+  my_char('\n');
+  j = my_atoi("123");
+  my_str((j == 123) ? "GOOD: j == 123\n" : "BAD: j != 123\n");
+  my_int(j);
+  my_char('\n');
+  j = my_atoi("-901");
+  my_str((j == -901) ? "GOOD: j == -901\n" : "BAD: j != -901\n");
+  my_int(j);
+  my_char('\n');
+  j = my_atoi("             124\t\t ");
+  my_str((j == 124) ? "GOOD: j == 124\n": "BAD: j != 124\n");
+  my_int(j);
+  my_char('\n');
+  
+
 #endif
   return 0;
 }
