@@ -18,13 +18,15 @@ void get_char(int sig){
   ++count;
   if(count >= (8 * sizeof(char))){
     if(c == '\0'){
-      my_str("Setting done flag.\n");
+#ifdef DEBUG
+      my_str("\nSetting done flag.\n");
+#endif
       gl_env.done = 1;
     }else {
       my_char(c);
-      count = 0;
-      c = 0;
     }
+    count = 0;
+    c = 0;
   } else
     c = c << 1;
   kill(gl_env.clipid, SIGUSR1);

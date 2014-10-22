@@ -21,13 +21,17 @@ int main(int argc, char** argv){
     my_str("Client Pid Recieved: ");
     my_int((int) gl_env.clipid);
     my_str("\nWaiting for Message.\n");
+    my_str("MESSAGE RECIEVED: ");
 #endif
     signal(SIGUSR1, get_char);
     signal(SIGUSR2, get_char);
     kill(gl_env.clipid, SIGUSR1);
     while(!gl_env.done)
       pause();
-    my_str("Done printing string.\n\n\n");
+#ifdef DEBUG
+    my_str("Done printing string.\n");
+#endif
+    my_str("\n\n");
   }
   return 0;
 }

@@ -19,6 +19,7 @@ void get_client_pid(int sig){
   if(count >= (8 * sizeof(pid_t))){
     gl_env.clipid = pid;
     count = 0;
+    pid = 0;
   }
 #if 0
   my_int((int) pid);
