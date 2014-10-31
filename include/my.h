@@ -8,6 +8,7 @@ My library for commonly used functions */
 #endif
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 void my_char(char);
 void my_str(char *);
@@ -34,5 +35,6 @@ char* my_vect2str(char**);
 char** my_str2vect(char*);
 void my_freevect(char**);
 int my_atoi(char*);
+void my_err(char*);
 
 #endif
