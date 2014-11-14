@@ -6,7 +6,7 @@
 #include <fcntl.h>
 #include <termios.h>
 #include <sys/termios.h>
-#include "../lib/my.h"
+#include "my.h"
 #include <signal.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -17,6 +17,8 @@
 
 #define READMIN 3
 /* used to return from min if 3 bytes have been read. Needed for things like characters which are \E[A B C or D */
+
+#define BUFMAX 16
 
 #ifndef NULL
 #define NULL (0)
@@ -38,9 +40,9 @@
 #define UNDER_END "ue"
 #define CURSOROFF "vi"
 #define CURSORON "ve"
-#define VECAP "\E[?25h" // actual string for VE in case tgetstr doesn't find it
-#define VICAP "\E[?25l" // same as above but for VI
-#define ESC 27
+#define VECAP "\E[?25h" /* actual string for VE in case tgetstr doesn't find it */
+#define VICAP "\E[?25l" /* same as above but for VI */
+#define ESC "\E"
 
 typedef struct	s_elem
 {
@@ -76,27 +78,27 @@ typedef struct	s_env
 }		t_env;
 
 t_env	gl_env;
-// created as a structure to limit number of globals to 1
+/* created as a structure to limit number of globals to 1 */
 
 void	init_terminal();
 void	restore_terminal();
 char	*term_get_cap(char*);
-void	init_caps();
+void	init_caps();	
 int	my_termprint(int);
-void	term_clear();
-void	term_vi();
-void	term_ve();
+void	term_clear();	
+void	term_vi();	
+void	term_ve();	
 char	check_char(char *c);
-char	get_win_size();
+void	win_resize();	
 void	show_elems();
-void	refreshin();
+void	refreshin();	
 void	refreshout(int);
 void	moveup();
 void	movedown();
 void	moveleft();
 void	moveright();
 void	doselect();
-void	getout(char);
+void	getoutput();		/*  */
 void	setup_elems(int, char**);
 void	term_move_to_item(int);
 void	term_underline();
