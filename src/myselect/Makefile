@@ -4,7 +4,7 @@ RM = rm -f
 CC = clang
 INCL_PATH = ../../include
 LIB_PATH = ../../lib
-CFLAGS += -I $(INCL_PATH) -L $(LIB_PATH)
+CFLAGS += -I $(INCL_PATH) -L $(LIB_PATH) -Wall
 debug : CFLAGS += -DDEBUG
 
 all:	

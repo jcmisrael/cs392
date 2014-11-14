@@ -8,8 +8,6 @@ void init_caps(){
   char* term;
   char area[2048];
   extern t_env gl_env;
-  char esc;
-  char* escP = NULL;
 #ifdef DEBUG
   my_str("GETENV and TGETENT\n");
 #endif
@@ -24,16 +22,13 @@ void init_caps(){
   gl_env.right = term_get_cap(RIGHT);
   gl_env.up = term_get_cap(UP);
   gl_env.down = term_get_cap(DOWN);
-  /*#ifdef DEBUG
+#ifdef DEBUG
   my_str("INIT ESC CAP\n");
 #endif
-  esc = ESC;
-  escP = (char*)xmalloc(sizeof(char));
-  *escP = esc;
-  gl_env.esc = term_get_cap(escP);
+  /*gl_env.esc = term_get_cap(ESC);*/
 #ifdef DEBUG
   my_str("INIT ESC CAP DONE\n");
-  #endif*/
+#endif
   gl_env.underline = term_get_cap(UNDERLINE);
   gl_env.under_end = term_get_cap(UNDER_END);
   gl_env.standout = term_get_cap(STANDOUT);
@@ -48,5 +43,4 @@ void init_caps(){
 #ifdef DEBUG
   my_str("INIT CURSOR CAP DONE\n");
 #endif
-  free(escP);
 }

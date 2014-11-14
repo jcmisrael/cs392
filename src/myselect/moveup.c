@@ -5,6 +5,7 @@ pre: takes nothing
 post: moves the cursor UP
 */
 void moveup(){
+  extern t_env gl_env;
 #ifdef DEBUG
   my_str("Moving up");
 #endif
