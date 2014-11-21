@@ -9,6 +9,7 @@ LIB_PATH = ../../lib
 CFLAGS += -I $(INCL_PATH) -L $(LIB_PATH) -pedantic-errors -Wall
 GTKFLAGS = `pkg-config --cflags --libs gtk+-2.0`
 debug : CFLAGS += -DDEBUG
+client : CFLAGS += -DGTK
 
 all:	server client
 

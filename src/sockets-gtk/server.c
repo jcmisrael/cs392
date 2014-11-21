@@ -1,7 +1,6 @@
 #include "sockets.h"
 
 #define QUEUELENGTH 16
-#define BUF_LEN_MAX 256
 
 int servfd;
 pid_t pid;
