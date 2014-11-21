@@ -6,5 +6,6 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <signal.h>
+#include <gtk/gtk.h>
 
 #endif
