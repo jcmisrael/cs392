@@ -6,11 +6,7 @@ int servfd = -1;
 char connected_gl = 0;
 
 void sig_bye(){
-  extern int servfd;
-  send(servfd, "/exit", 6, 0);
-  close(servfd);
-  my_str("\nExiting myirc_client.\n");
-  exit(0);
+  my_str("Error: Could not close myirc_client.\n");
 }
 
 void logout(){
@@ -172,6 +168,9 @@ int main(int argc, char** argv){
   GtkWidget* label;
   GtkWidget** ctfields = xmalloc(3 * sizeof(GtkWidget*));
 
+  signal(SIGINT, sig_bye);
+  signal(SIGQUIT, sig_bye);
+  
   gtk_init(&argc, &argv);
   
   window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -267,45 +266,3 @@ int main(int argc, char** argv){
 
   return 0;
 }
-
-/*int main(int argc, char** argv){
-  int err;
-  char* input = NULL;
-  int strLen;
-  char** inputVect = NULL;
-  if(argc != 3){
-    my_str("Usage: ./myirc_client <hostname> <port>\n");
-    exit(1);
-  }
-  signal(SIGINT, sig_bye);
-  signal(SIGQUIT, sig_bye);
-  input = xmalloc(BUF_LEN_MAX);
-	my_str("Enter username: ");
-	strLen = read(0, input, BUF_LEN_MAX) - 1;
-	input[strLen] = '\0';
-#ifdef DEBUG
-	my_str("Sending username.\n");
-#endif
-	send(servfd, input, strLen, 0);
-	while(1){
-	  my_char('>');
-	  strLen = read(0, input, BUF_LEN_MAX) - 1;
-	  if(strLen >= 1){
-#ifdef DEBUG
-	    my_str("Input accepted.\n");
-#endif
-	    input[strLen] = '\0';
-	    inputVect = my_str2vect(input);
-	   
-	  }
-	}
-      }
-      close(servfd);
-      my_err("Connect error");
-    }
-    close(servfd);
-    my_err("Socket error");
-  }
-  exit(0);
-  }*/
-
