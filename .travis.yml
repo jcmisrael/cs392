@@ -5,7 +5,8 @@ compiler:
   - clang
 
 script:
-  - cd test/my/ && make && ./testmy
+  - cd src/my/ && make && cd -
+  - cd test/my/ && make && ./testmy && cd -
 
 addons:
   apt:
