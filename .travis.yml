@@ -1,0 +1,16 @@
+langauge: c
+
+compiler:
+  - gcc
+  - clang
+
+script:
+  - cd test/my/ && make && ./testmy
+
+addons:
+  apt:
+    packages:
+      - cmake
+      - libcunit1
+      - libcunit1-dev
+      - build-essential

@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/jcmisrael/cs392.svg)](https://travis-ci.org/jcmisrael/cs392)
 # CS 392 #
 Contained within is all my work for cs392, Systems Programming, at Stevens Institute of Technology
 
