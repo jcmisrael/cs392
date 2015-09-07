@@ -10,10 +10,10 @@ My library for commonly used functions */
 #include <stdlib.h>
 #include <stdio.h>
 
-void my_char(char);
-void my_str(char *);
-void my_int(int);
-void my_num_base(int, char *);
+ssize_t my_char(char);
+ssize_t my_str(char *);
+ssize_t my_int(int);
+char* my_num_base(int, char *);
 void my_alpha();
 void my_digits();
 int my_strlen(char *);

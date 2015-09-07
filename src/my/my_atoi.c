@@ -13,22 +13,22 @@ int my_atoi(char* str){
       ;
     if(str[i] == '-' || (str[i] >= '0' && str[i] <= '9')){
       if(str[i] == '-'){
-	base = -1;
-	++i;
+          base = -1;
+          ++i;
       } else
-	base = 1;
+          base = 1;
       for(r = 0; str[i+r] >= '0' && str[i+r] <= '9'; ++r){
-	base *= 10;
+          base *= 10;
 #ifdef DEBUG
-	my_int(base);
-	my_char('\n');
+          my_int(base);
+          my_char('\n');
 #endif
       }
       base /= 10;
       r = 0;
       for(; str[i] >= '0' && str[i] <= '9'; ++i){
-	r += (str[i] - '0') * base;
-	base /= 10;
+          r += (str[i] - '0') * base;
+          base /= 10;
       }
     }
   }

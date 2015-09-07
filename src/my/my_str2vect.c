@@ -33,7 +33,7 @@ char** my_str2vect(char* str){
     if(str[i]){
       substringStart = &(str[i]);
       for(strLen = 0; str[i] != ' ' && str[i] != '\t' && str[i]; ++i)
-	++strLen;
+          ++strLen;
       vect[vectS] = xmalloc((strLen * sizeof(char)) + 1);
       my_strncpy(vect[vectS], substringStart, strLen);
       vect[vectS][strLen] = '\0';

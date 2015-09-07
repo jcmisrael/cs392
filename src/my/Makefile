@@ -24,7 +24,5 @@ fclean:	clean
 
 re: fclean all
 
-test: 
+test:
 	( cd ../../test/my/ ; make ; ./testmy )
-
-
