@@ -34,8 +34,8 @@ void testMY_STR(void){
     char str[] = "test";
 
     if(temp_file != NULL){
-        CU_ASSERT(my_str(str) == 5);
-        CU_ASSERT(my_str("") == 1);
+        CU_ASSERT(my_str(str) == 4);
+        CU_ASSERT(my_str("") == 0);
         CU_ASSERT(my_str(NULL) == 0);
     }
 }
@@ -58,7 +58,7 @@ void testMY_NUM_BASE(void){
         CU_ASSERT_STRING_EQUAL(my_num_base(i, alpha), "123");
         CU_ASSERT_STRING_EQUAL(my_num_base(i, hex), "7B");
         CU_ASSERT_STRING_EQUAL(my_num_base(-i, alpha), "-123");
-        CU_ASSERT_STRING_EQUAL(my_num_base(i, NULL), "");
+        CU_ASSERT(my_num_base(i, NULL) == NULL);
     }
 }
 
@@ -68,16 +68,18 @@ void testMY_STRLEN(void){
     if(temp_file != NULL){
         CU_ASSERT(my_strlen(str) == 4);
         CU_ASSERT(my_strlen("") == 0);
-        CU_ASSERT(my_strlen(NULL) == 0);
+        CU_ASSERT(my_strlen(NULL) == -1);
     }
 }
 
 void testMY_REVSTR(void){
-    char* str = (char*)xmalloc(5 * sizeof(char));
-    str = "test";
+    char* str = NULL;
+    str = my_strdup("testing");
+
 
     if(temp_file != NULL){
-        CU_ASSERT(my_revstr(str) == 4);
+        CU_ASSERT(my_revstr(str) == 7);
+        CU_ASSERT_STRING_EQUAL(str, "gnitset");
         CU_ASSERT(my_revstr(NULL) == 0);
     }
 }
@@ -334,7 +336,7 @@ int main(int argc, char** args){
     if(CU_initialize_registry() != CUE_SUCCESS)
         return CU_get_error();
 
-    pSuite = CU_add_suite("Suite1", init_suite1, clean_suite1);
+    pSuite = CU_add_suite("libmy Testing Suite", init_suite1, clean_suite1);
     if(pSuite == NULL){
         CU_cleanup_registry();
         return CU_get_error();
@@ -345,10 +347,10 @@ int main(int argc, char** args){
        (CU_add_test(pSuite, "test of my_int", testMY_INT) == NULL) ||
        (CU_add_test(pSuite, "test of my_num_base", testMY_NUM_BASE) == NULL) ||
        (CU_add_test(pSuite, "test of my_strlen", testMY_STRLEN) == NULL) ||
+       (CU_add_test(pSuite, "test of my_strdup", testMY_STRDUP) == NULL) ||
        (CU_add_test(pSuite, "test of my_revstr", testMY_REVSTR) == NULL) ||
        (CU_add_test(pSuite, "test of my_strpos", testMY_STRPOS) == NULL) ||
        (CU_add_test(pSuite, "test of my_strrpos", testMY_STRRPOS) == NULL) ||
-       (CU_add_test(pSuite, "test of my_strdup", testMY_STRDUP) == NULL) ||
        (CU_add_test(pSuite, "test of my_strcmp", testMY_STRCMP) == NULL) ||
        (CU_add_test(pSuite, "test of my_strncmp", testMY_STRNCMP) == NULL) ||
        (CU_add_test(pSuite, "test of my_strconcat", testMY_STRCONCAT) == NULL) ||
@@ -365,7 +367,7 @@ int main(int argc, char** args){
         return CU_get_error();
     }
 
-    CU_basic_set_mode(CU_BRM_VERBOSE);
+    CU_basic_set_mode(CU_BRM_NORMAL);
     CU_basic_run_tests();
     CU_cleanup_registry();
     return CU_get_error();
