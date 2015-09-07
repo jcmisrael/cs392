@@ -15,7 +15,7 @@ char* my_strnconcat(char* s1, char* s2, unsigned int n){
     l2 = my_strlen(s2);
     if(n > l2)
       n = l2;
-    s3 = xmalloc((l1 + n) * sizeof(char) + 1);
+    s3 = (char*)xmalloc((l1 + n) * sizeof(char) + 1);
     for(i = 0; s1[i]; i++)
       s3[i] = s1[i];
     for(j = 0; j < n; i++, j++)

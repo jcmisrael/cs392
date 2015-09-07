@@ -6,14 +6,15 @@ pre: takes a char*
 post: returns the length of the reversed string and reverses it
 */
 int my_revstr(char* str){
-  int l = my_strlen(str) - 1;
-  int i = 0;
-  if(l > 1){
-    for(; i < l/2; ++i){
-      str[i] ^= str[l-i];
-      str[l-i] ^= str[i];
-      str[i] ^= str[l-i];
+    int len;
+    int i;
+    len = my_strlen(str);
+    if(len > 1){
+        for(i = 0; i < len/2; ++i){
+            str[i] ^= str[len-i-1];
+            str[len-i-1] ^= str[i];
+            str[i] ^= str[len-i-1];
+        }
     }
-  }
-  return l + 1;
+    return len;
 }

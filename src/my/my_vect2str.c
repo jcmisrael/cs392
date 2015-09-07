@@ -20,7 +20,7 @@ char* my_vect2str(char** stringArray){
       *rStringInc = ' ';
       rStringInc += sizeof(char);
     }
-    *rStringInc = '\0';
+    *(--rStringInc) = '\0';
 #ifdef DEBUG
     my_str("Length: ");
     my_int(length);

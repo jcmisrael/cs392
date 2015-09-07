@@ -80,7 +80,7 @@ void testMY_REVSTR(void){
     if(temp_file != NULL){
         CU_ASSERT(my_revstr(str) == 7);
         CU_ASSERT_STRING_EQUAL(str, "gnitset");
-        CU_ASSERT(my_revstr(NULL) == 0);
+        CU_ASSERT(my_revstr(NULL) == -1);
     }
 }
 
@@ -121,8 +121,8 @@ void testMY_STRDUP(void){
 void testMY_STRCMP(void){
     if(temp_file != NULL){
         CU_ASSERT(my_strcmp("testing", "testing") == 0);
-        CU_ASSERT(my_strcmp("Testing", "testing") > 0);
-        CU_ASSERT(my_strcmp("testing", "Testing") < 0);
+        CU_ASSERT(my_strcmp("TESTING", "testing") < 0);
+        CU_ASSERT(my_strcmp("testing", "TESTING") > 0);
         CU_ASSERT(my_strcmp(NULL, NULL) == 0);
         CU_ASSERT(my_strcmp("testing", NULL) > 0);
         CU_ASSERT(my_strcmp(NULL, "testing") < 0);
@@ -134,13 +134,13 @@ void testMY_STRCMP(void){
 void testMY_STRNCMP(void){
     if(temp_file != NULL){
         CU_ASSERT(my_strncmp("testing", "testing", 4) == 0);
-        CU_ASSERT(my_strncmp("Testing", "testing", 4) > 0);
-        CU_ASSERT(my_strncmp("testing", "Testing", 4) < 0);
+        CU_ASSERT(my_strncmp("TESTING", "testing", 4) < 0);
+        CU_ASSERT(my_strncmp("testing", "TESTING", 4) > 0);
         CU_ASSERT(my_strncmp(NULL, NULL, 4) == 0);
         CU_ASSERT(my_strncmp("testing", NULL, 4) > 0);
         CU_ASSERT(my_strncmp(NULL, "testing", 4) < 0);
         CU_ASSERT(my_strncmp("test", "testing", 4) == 0);
-        CU_ASSERT(my_strncmp("testing", "test", 4) > 0);
+        CU_ASSERT(my_strncmp("testing", "test", 4) == 0);
     }
 }
 
@@ -179,9 +179,6 @@ void testMY_STRNCONCAT(void){
         CU_ASSERT(str == NULL);
         str = my_strnconcat("testing", " long", 50);
         CU_ASSERT_STRING_EQUAL(str, "testing long");
-        free(str);
-        str = my_strnconcat("testing", " negative", -51);
-        CU_ASSERT_STRING_EQUAL(str, "testing");
         free(str);
     }
 }
@@ -232,9 +229,6 @@ void testMY_STRNCPY(void){
         CU_ASSERT_STRING_EQUAL(str, "copying");
         str = my_strncpy(str, NULL, 4);
         CU_ASSERT_STRING_EQUAL(str, "copying");
-        str = my_strncpy(str, "testing", -6);
-        CU_ASSERT_STRING_EQUAL(str, "copying");
-        free(str);
         str = my_strncpy(NULL, "testing", 6);
         CU_ASSERT(str == NULL);
     }
